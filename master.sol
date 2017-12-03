@@ -25,7 +25,12 @@ contract Master {
       //before i get safemath let me just try this
       inputs[i] = toBytes(uint(thumbHash[i]) - uint(ipfsHash[i])) ;
       }
-    functions[indexHash] = address(new Patient(inputs));
+    if (functions[indexHash] != address(0x0)) {
+      functions[indexHash].call(bytes4(sha3("returnHash(bytes32)")),thumbHash);
+    } else {
+      functions[indexHash] = address(new Patient(inputs));
+    }
+
   }
 
   function accessData(uint32 indexFinger, uint32 thumb) public {

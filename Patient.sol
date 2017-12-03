@@ -4,13 +4,17 @@ contract Patient {
   address myAddress;
   uint num_updates;
   bytes32 functionInputs;
-  mapping(address => uint);
+  mapping(uint => address) updatesByTime;
+  mapping(address => uint) mostRecentUpdate;
 
   event InfoChanged(address);
 
   function Patient(bytes32 _functionInputs, address pcp) public {
     functionInputs = _functionInputs;
-    infoChanged
+    uint time = now;
+    updatesByTime[time] = pcp;
+    mostRecentUpdate[pcp] = now;
+    infoChanged(pcp);
   }
 
   function toBytes(uint256 x) public returns (bytes b) {
