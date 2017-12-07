@@ -14,7 +14,7 @@ contract Patient {
     uint time = now;
     updatesByTime[time] = pcp;
     mostRecentUpdate[pcp] = now;
-    infoChanged(pcp);
+    InfoChanged(pcp);
   }
 
   function toBytes(uint256 x) public returns (bytes b) {
@@ -23,20 +23,23 @@ contract Patient {
   }
 
   function returnHash(bytes32 thumbHash) public returns (bytes) {
-    bytes memory output;
+    /*bytes memory output;
     for (uint i = 0; i < 64; i += 1) {
       uint a = uint(thumbHash[i]);
       uint b = uint(functionInputs[i]);
       if (a > b) {
-        output[i] = bytes1(toBytes(a - b));
+        (output[i]) = (toBytes(a  - b));
       } else {
         output[i] = bytes1(toBytes(b - a));
       }
+      a = 0;
+      b = 0;
     }
-    return output;
+    return output;*/
   }
 
-  function updateInfo(bytes input, address pcp) {
 
+  function updateInfo(bytes input, address pcp) public {
+    InfoChanged(pcp);
   }
 }

@@ -3,7 +3,7 @@ import "Patient.sol";
 contract Master {
   mapping(bytes32 => address) functions;
 
-  event()
+
 
   function uploadData(bytes32 indexHash, bytes32 ipfsHash) public {
     //frontend?
@@ -19,7 +19,7 @@ contract Master {
   }
 
   function makeFunction(bytes32 thumbHash, bytes32 indexHash, bytes32 ipfsHash) public {
-    bytes memory inputs;
+    /*bytes memory inputs;
     bytes memory hashTime = sha3(now);
     for(uint i = 0; i < 64; i += 1) {
       //before i get safemath let me just try this
@@ -29,7 +29,7 @@ contract Master {
       functions[indexHash].call(bytes4(sha3("returnHash(bytes32)")),thumbHash);
     } else {
       functions[indexHash] = address(new Patient(inputs));
-    }
+    }*/
 
   }
 
